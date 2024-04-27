@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - Recipe Sharing Platform</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Recipe Sharing Platform</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recipe/add">Add Recipe</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h2>Search Results for "<span th:text="${query}"></span>"</h2>
+            <ul>
+                <!-- Iterate over the search results and display each recipe -->
+                <li th:each="recipe : ${searchResults}">
+                    <a th:href="@{/recipe/{id}(id=${recipe.id})}">
+                        <h4 th:text="${recipe.name}">Recipe Name</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Recipe Sharing Platform</p>
+    </footer>
+</body>
+</html>

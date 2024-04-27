@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Sharing Platform</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        /* Style for the search form */
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+}
+        </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Recipe Sharing Platform</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recipe/add">Add Recipe</a></li>
+            <li><a href="/my-recipe">My Recipe</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+        <h1>Welcome, <span th:text="${userName}"></span>!</h1>
+            <form action="/search" method="GET" style="text-align: center;">
+                <input type="text" name="query" placeholder="Search recipes..." style="width: 300px; padding: 10px; border: 2px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box;">
+                <button type="submit" style="background-color: #007bff; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Search</button>
+            </form>
+            <h2>Recipes</h2>
+            <ul>
+                <li th:each="recipe : ${recipes}">
+                    <a th:href="@{/recipe/{id}(id=${recipe.id})}">
+                        <h3 th:text="${recipe.name}">Recipe Name</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Recipe Sharing Platform</p>
+    </footer>
+</body>
+</html>

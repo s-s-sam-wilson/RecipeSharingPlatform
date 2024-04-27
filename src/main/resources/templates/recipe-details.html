@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details - Recipe Sharing Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+    .escape-hatch {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .escape-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .escape-link:hover {
+            text-decoration: underline;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        .recipe-details {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        h2 {
+            color: #007bff;
+        }
+        p {
+            color: #555;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+ <div class="escape-hatch">
+        <a href="/" class="escape-link">Back to Home</a>
+    </div>
+    <h1>Recipe Details</h1>
+    <div th:if="${recipe}" class="recipe-details">
+        <h2 th:text="${name}"></h2>
+        <p  th:utext="${description}"></p>
+        <h3>Ingredients<h3>
+        <p th:utext="${ingredients}"></p>
+        <h3>Directions<h3>
+        <p th:utext="${directions}"></p>
+    </div>
+    <footer>
+        Recipe Sharing Platform © 2024 Recipe Sharing Platform
+    </footer>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Sharing Platform</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        /* Style for the search form */
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Style for recipe list */
+        .recipe-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .recipe-item h3 {
+            margin: 0;
+        }
+
+        .recipe-buttons {
+            margin-top: 10px;
+            display:inline-block;
+        }
+
+        .recipe-buttons button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .recipe-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Recipe Sharing Platform</h1>
+    </header>
+    <nav>
+        <ul>
+            <li class="active" ><a href="/">Home</a></li>
+            <li><a href="/recipe/add">Add Recipe</a></li>
+            <li><a href="/my-recipe">My Recipe</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h1>Your Recipes: <span th:text="${userName}"></span></h1>
+            <ul>
+                <li th:each="recipe : ${recipes}" class="recipe-item">
+                    <a th:href="@{/recipe/{id}(id=${recipe.id})}">
+                        <h3 th:text="${recipe.name}">Recipe Name</h3>
+                    </a>
+                    <div class="recipe-buttons">
+                        <div class="recipe-buttons">
+						    <form th:action="@{/recipe/edit/{id}(id=${recipe.id})}" method="get">
+						        <button type="submit">Edit</button>
+						    </form>
+						</div>
+                        <div class="recipe-buttons">
+						    <form th:action="@{/recipe/delete/{id}(id=${recipe.id})}" method="post">
+						        <button type="submit">Delete</button>
+						    </form>
+						</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Recipe Sharing Platform</p>
+    </footer>
+</body>
+</html>
